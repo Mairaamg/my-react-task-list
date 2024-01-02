@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { IoMdAddCircleOutline } from "react-icons/io";
+import { IoMdAddCircleOutline } from 'react-icons/io';
 import './Header.css';
 
 const Header = ({ onAddTask }) => {
   const [taskInput, setTaskInput] = useState('');
   const [taskDescription, setTaskDescription] = useState('');
+  const [formError, setFormError] = useState('');
 
   const handleInputChange = (e) => {
     setTaskInput(e.target.value);
@@ -14,11 +15,15 @@ const Header = ({ onAddTask }) => {
     setTaskDescription(e.target.value);
   };
 
-  const handleAddTask = () => {
-    if (taskInput.trim() === '' || taskDescription.trim() === '') {
-      // Evitar agregar tareas con campos vacíos
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (taskInput.length < 3) {
+      setFormError('Task name must be at least 3 characters.');
       return;
     }
+
+    setFormError('');
 
     const newTask = {
       id: Date.now(),
@@ -31,28 +36,30 @@ const Header = ({ onAddTask }) => {
 
     setTaskInput('');
     setTaskDescription('');
-    console.log('Task added:', newTask);
   };
 
   return (
     <div className="header">
       <h1>ToDo List</h1>
-      <div className="task-input">
-        <input
-          type="text"
-          placeholder="Add a new task..."
-          value={taskInput}
-          onChange={handleInputChange}
-        />
-        <textarea
-          placeholder="Task description..."
-          value={taskDescription}
-          onChange={handleDescriptionChange}
-        />
-        <button onClick={handleAddTask}>
-          <IoMdAddCircleOutline/>
-        </button>
-      </div>
+      <form onSubmit={handleSubmit}>
+        <div className="task-input">
+          <input
+            type="text"
+            placeholder="Add a new task..."
+            value={taskInput}
+            onChange={handleInputChange}
+          />
+          <textarea
+            placeholder="Task description..."
+            value={taskDescription}
+            onChange={handleDescriptionChange}
+          />
+          <button type="submit">
+            <IoMdAddCircleOutline />
+          </button>
+        </div>
+      </form>
+      {formError && <p className="error-message">{formError}</p>}
     </div>
   );
 };
