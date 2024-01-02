@@ -1,33 +1,36 @@
 import React, { useState } from 'react';
-import { IoIosAdd } from 'react-icons/io';
+import { IoMdAddCircleOutline } from "react-icons/io";
 import './Header.css';
 
 const Header = ({ onAddTask }) => {
   const [taskInput, setTaskInput] = useState('');
+  const [taskDescription, setTaskDescription] = useState('');
 
   const handleInputChange = (e) => {
     setTaskInput(e.target.value);
   };
 
+  const handleDescriptionChange = (e) => {
+    setTaskDescription(e.target.value);
+  };
+
   const handleAddTask = () => {
-    if (taskInput.trim() === '') {
-      // Evitar agregar tareas vacías
+    if (taskInput.trim() === '' || taskDescription.trim() === '') {
+      // Evitar agregar tareas con campos vacíos
       return;
     }
 
-    // Crear una nueva tarea con un ID único (puedes usar un paquete como uuid para generar IDs)
     const newTask = {
-      id: Date.now(), // Usamos la marca de tiempo como ID en este ejemplo
-      name: taskInput,
+      id: Date.now(),
+      title: taskInput,
+      description: taskDescription,
       completed: false,
     };
 
-    // Llamar a la función proporcionada desde el componente principal para agregar la tarea
     onAddTask(newTask);
 
-    // Limpia el input después de agregar la tarea
     setTaskInput('');
-
+    setTaskDescription('');
     console.log('Task added:', newTask);
   };
 
@@ -41,8 +44,13 @@ const Header = ({ onAddTask }) => {
           value={taskInput}
           onChange={handleInputChange}
         />
+        <textarea
+          placeholder="Task description..."
+          value={taskDescription}
+          onChange={handleDescriptionChange}
+        />
         <button onClick={handleAddTask}>
-          <IoIosAdd />
+          <IoMdAddCircleOutline/>
         </button>
       </div>
     </div>

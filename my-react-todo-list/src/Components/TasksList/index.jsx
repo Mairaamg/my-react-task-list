@@ -1,34 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Task from '../Task/index';
+import Header from '../Header';
 import './TasksList.css';
 
-
 const TaskList = () => {
-    const [tasks, setTasks] = useState([
-        { id: 1, name: 'Realizar informes de tercer trimestre para 4A y 4B', completed: false },
-        { id: 2, name: 'Estudiar React en Platzi', completed: false },
-        { id: 3, name: 'Repasar HTML y CSS con Mimo', completed: false },
-        { id: 4, name: 'Empezar el curso práctico de JavaScript en Platzi', completed: false },
-        { id: 5, name: 'Avanzar en la plataforma de ADA', completed: false },
-        { id: 6, name: 'Realizar laboratorios grupales', completed: false },
-        { id: 7, name: 'Hacer primer entregable de React', completed: false },
-    ]);
+  const [tasks, setTasks] = useState(() => {
+    const storedTasks = localStorage.getItem('tasks');
+    return storedTasks ? JSON.parse(storedTasks) : [
+        { id: 1, title: 'Estudiar', description: 'Debo estudiar React en Platzi', completed: false },
+        { id: 2, title: 'Repasar', description: 'Estudiar en Mimo HTML y CSS', completed: false },
+    ];
+  });
   
-    const handleAddTask = (newTask) => {
-      setTasks((prevTasks) => [...prevTasks, newTask]);
-    };
-  
-    const handleDeleteTask = (taskId) => {
-      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
-    };
-  
-    return (
-      <div className="task-list">
-        {tasks.map((task) => (
-          <Task key={task.id} task={task} onDeleteTask={handleDeleteTask} />
-        ))}
-      </div>
-    );
+  const handleDeleteTask = (taskId) => {
+    setTasks((prevTasks) => {
+      const updatedTasks = prevTasks.filter((task) => task.id !== taskId);
+      localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+      return updatedTasks;
+    });
   };
-  
-  export default TaskList;
+
+  const handleAddTask = (newTask) => {
+    setTasks((prevTasks) => {
+      const updatedTasks = [...prevTasks, newTask];
+      localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+      return updatedTasks;
+    });
+  };
+
+  const handleEditTask = (taskId, updatedTask) => {
+    setTasks((prevTasks) => {
+      const updatedTasks = prevTasks.map((task) =>
+        task.id === taskId ? { ...task, ...updatedTask } : task
+      );
+      localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+      return updatedTasks;
+    });
+  };
+
+  useEffect(() => {
+    const storedTasks = localStorage.getItem('tasks');
+    if (storedTasks) {
+      setTasks(JSON.parse(storedTasks));
+    }
+  }, []);
+
+  return (
+    <div className="task-list">
+    <Header onAddTask={handleAddTask} />
+    {tasks.map((task) => (
+      <Task key={task.id} task={task} onDeleteTask={handleDeleteTask} onEditTask={handleEditTask} />
+    ))}
+  </div>
+  );
+};
+
+export default TaskList;

@@ -1,7 +1,7 @@
 .task {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Alinea los íconos a la derecha */
+  justify-content: space-between; 
   background-color: #fff;
   padding: 10px;
   margin: 10px;
@@ -17,11 +17,16 @@
 
 .task.completed {
   text-decoration: line-through;
+  color: palevioletred;
   opacity: 0.7;
 }
 
 .task-info {
   flex-grow: 1;
+  color: rgb(104, 50, 68);
+  font-family: 'Comfortaa', sans-serif;
+  font: bold;
+
 }
 
 .task-icons {
@@ -36,5 +41,10 @@
 
 .check-icon {
   color: #27ae60;
+  cursor: pointer;
+}
+
+.edit-icon {
+  color: rgb(54, 146, 196);
   cursor: pointer;
 }
