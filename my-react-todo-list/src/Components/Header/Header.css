@@ -34,3 +34,8 @@
   font-family: 'Comfortaa', sans-serif;
   justify-content: center;
 }
+
+.error-message {
+  color: black;
+  font-style: italic;
+}
