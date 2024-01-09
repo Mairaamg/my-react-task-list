@@ -1,0 +1,43 @@
+.about-us-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh; 
+    padding: 20px;
+    color: rgb(19, 108, 40);
+    font-family: 'Comfortaa', cursive;
+  }
+  
+
+  .section-title {
+    font-size: 55px; 
+    border: 2px solid rgb(19, 108, 40); 
+    border-radius: 15px;
+    background-color: #f45eb8;
+
+  }
+  
+  .app-description {
+    font-size: 30px;
+    margin-bottom: 40px;
+  }
+  
+  .functionality-item {
+    display: flex;
+    align-items: center; 
+    margin-bottom: 8px; 
+  }
+  
+  .app-functionalities {
+    font-size: 25px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column; 
+  }
+  
+  .app-technologies {
+    font-size: 30px;
+    
+  }
+  

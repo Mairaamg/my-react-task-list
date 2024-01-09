@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { IoMdAddCircleOutline } from 'react-icons/io';
+import { Box, Input, Textarea, Button } from '@chakra-ui/react';
 import './Header.css';
 
 const Header = ({ onAddTask }) => {
@@ -39,28 +40,37 @@ const Header = ({ onAddTask }) => {
   };
 
   return (
-    <div className="header">
-      <h1>ToDo List</h1>
+    <Box
+      className="header"
+      bgImage={`url('/todo-list.png') center/cover no-repeat fixed`}
+      backgroundSize="cover"
+      backgroundPosition="center"
+      padding="20px"
+      color="#fff"
+      boxShadow="0px 4px 8px rgba(0, 0, 0, 0.1)"
+    >
+      
       <form onSubmit={handleSubmit}>
-        <div className="task-input">
-          <input
+        <Box className="task-input">
+          <Input
             type="text"
             placeholder="Add a new task..."
             value={taskInput}
             onChange={handleInputChange}
+            
           />
-          <textarea
+          <Textarea
             placeholder="Task description..."
             value={taskDescription}
             onChange={handleDescriptionChange}
           />
-          <button type="submit">
+          <Button type="submit">
             <IoMdAddCircleOutline />
-          </button>
-        </div>
+          </Button>
+        </Box>
       </form>
       {formError && <p className="error-message">{formError}</p>}
-    </div>
+    </Box>
   );
 };
 

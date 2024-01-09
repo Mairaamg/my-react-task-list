@@ -2,28 +2,28 @@
   display: flex;
   align-items: center;
   justify-content: space-between; 
-  background-color: #fff;
+  background-color: #DFFAE1;
   padding: 10px;
   margin: 10px;
   border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 8px rgb(31, 70, 40);
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .task:hover {
-  background-color: #f8f8f8;
+  background-color: rgb(228, 246, 212);
 }
 
 .task.completed {
   text-decoration: line-through;
-  color: palevioletred;
+  color: rgb(31, 70, 40);
   opacity: 0.7;
 }
 
 .task-info {
   flex-grow: 1;
-  color: rgb(104, 50, 68);
+  color: #FF0099;
   font-family: 'Comfortaa', sans-serif;
   font: bold;
 
@@ -35,7 +35,7 @@
 }
 
 .delete-icon {
-  color: #e75480;
+  color: #FF0099;
   cursor: pointer;
 }
 

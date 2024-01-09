@@ -1,9 +1,8 @@
 .header {
-  background-color: #e75480;
+  box-shadow: 0px 4px 8px rgb(31, 70, 40);
+  background: url('./todo-list.png') center/cover;
   padding: 20px;
-  color: #fff;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  
+  border-radius: 20px;
 }
 
 .task-input {
@@ -11,29 +10,31 @@
 }
 
 .task-input input {
-  width: 70%;
-  padding: 8px;
+  width: 50%;
+  padding: 5px;
   border: none;
-  border-bottom: 2px solid #fff;
+  border-bottom: 1px solid #fff;
   outline: none;
+  align-items: center;
   font-size: 16px;
   margin-right: 10px;
-  color: #fff;
+  margin-bottom: 10px;
+  color: white;
   background-color: transparent;
 }
-
+.task-input textarea {
+  width: 90%;
+  align-items: center;
+}
 .task-input button {
   border: none;
   background-color: transparent;
   cursor: pointer;
-  font-size: 24px;
-  color: #fff;
+  margin-top: 10px;
+  font-size: 30px;
+  color:#FF0099;
 }
 
-::placeholder {
-  font-family: 'Comfortaa', sans-serif;
-  justify-content: center;
-}
 
 .error-message {
   color: black;

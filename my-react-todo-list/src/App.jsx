@@ -1,13 +1,21 @@
 import React from 'react';
-import Header from './Components/Header/';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import TaskList from './Components/TasksList';
+import AboutUs from './Pages/AboutUs';
+import Home from './Pages/Home';
 import './styles/global.css';
 
 function App() {
   return (
-    <div className="app">
-      <TaskList />
-    </div>
+      <Router>
+        <div className="app">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/tasks-list" element={<TaskList />} />
+            <Route path="/about-us" element={<AboutUs />} />
+          </Routes>
+        </div>
+      </Router>
   );
 }
 
